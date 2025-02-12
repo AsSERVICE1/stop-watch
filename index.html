@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>StopWatch</title>
+    <style>
+        body{
+            background-color: #4e4e4e;
+        }
+        .container{
+            width: 20%;
+            margin:10% auto;
+        }
+        .box{
+            background-color: rgba(0, 0, 0, 0.726);
+            text-align: center;
+            border-radius: 5px;
+            box-shadow: 0 0 10px #747474;
+            color: white;
+            padding: 10px 0;
+        }
+        .box p{
+            font-size: 45px;
+            margin: 0;
+            padding: 10px 0;
+        }
+        .box button{
+            width: 35%;
+            height: 40px;
+            margin: 10px;
+            background-color: blanchedalmond;
+            border: 2px solid blanchedalmond;
+            border-radius: 25px;
+            outline: 0;
+            font-size: 20px;
+            color: #000000;
+        }
+        .box button:hover{
+            background-color: transparent;
+            color: blanchedalmond;
+        }
+        #content{
+            height: 150px;
+            overflow: hidden;
+        }
+        #content p{
+            font-size: 18px;
+            color: #fff;
+        }
+    </style>
+</head>
+<body>
+    
+    <div class="container">
+        <div class="box">
+            <p id="count">0</p>
+
+                <button id="start">Start</button>
+                <button id="reset">Reset</button>
+
+                <button id="stop">Stop</button>
+                <button id="getTime">getTime</button>
+
+                <button id="clearTime">Clear time</button>
+
+
+                <div id="content"></div>
+
+           
+        </div>
+    </div>
+
+
+    <script>
+
+        let start = document.getElementById('start')
+        let reset = document.getElementById('reset')
+        let stoptime = document.getElementById('stop')
+        let getTime = document.getElementById('getTime')
+        let clearTime = document.getElementById('clearTime')
+        let count = document.getElementById('count')
+        let content = document.getElementById('content')
+
+        let startcount = 0;
+        let intervalid;
+
+        const starttimer = () =>{
+             intervalid = setInterval(()=>{
+                count.innerText = startcount++;
+            }, 1000)
+        }
+        const stoptimer = () =>{
+            clearInterval(intervalid);
+        }
+
+        const resettimer = () =>{
+            startcount=0
+            count.innerText = startcount;
+            clearInterval(intervalid);
+        }
+
+        const getTimer = () =>{
+            const paragraph = document.createElement('p');
+             paragraph.innerText = `You Stop and value is ${startcount - 1}`;
+             content.append(paragraph);
+        }
+
+        const clearTimer= () =>{
+            content.innerText = ""
+        }
+
+        start.addEventListener('click', starttimer);
+        reset.addEventListener('click', resettimer);
+        stoptime.addEventListener('click', stoptimer);
+        getTime.addEventListener('click', getTimer);
+        clearTime.addEventListener('click', clearTimer);
+
+    </script>
+</body>
+</html>
