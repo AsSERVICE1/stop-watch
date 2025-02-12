@@ -89,25 +89,32 @@
              intervalid = setInterval(()=>{
                 count.innerText = startcount++;
             }, 1000)
+            start.disabled=true;
         }
         const stoptimer = () =>{
+            start.disabled=false;
             clearInterval(intervalid);
         }
 
         const resettimer = () =>{
+            start.disabled=false;
             startcount=0
             count.innerText = startcount;
             clearInterval(intervalid);
+
         }
 
         const getTimer = () =>{
+            start.disabled=false;
             const paragraph = document.createElement('p');
              paragraph.innerText = `You Stop and value is ${startcount - 1}`;
              content.append(paragraph);
+             
         }
 
         const clearTimer= () =>{
-            content.innerText = ""
+            start.disabled=false;
+            content.innerText = "";
         }
 
         start.addEventListener('click', starttimer);
